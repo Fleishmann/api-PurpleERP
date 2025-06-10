@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import cobrancaRoutes from './cobranca-routes';
+import cobrancaRoutes from '@/modules/financeiro/cobranca/routes/cobranca-routes';
 
 const router: Router = Router();
 

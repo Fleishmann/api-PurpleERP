@@ -1,12 +1,19 @@
+import 'module-alias/register';
 import app from './app';
 
-const PORT: number = Number(process.env.PORT) || 3000;
+const PORT = process.env.PORT ? Number(process.env.PORT) : 3000;
+const HOST = process.env.HOST || '0.0.0.0';
 
-// app.listen(PORT, () => {
-//   console.log(`Servidor rodando na porta ${PORT}`);
-// });
+if (isNaN(PORT) || PORT <= 0) {
+  console.error('PORT inválida. Configure a variável de ambiente PORT corretamente.');
+  process.exit(1);
+}
 
+const server = app.listen(PORT, HOST, () => {
+  console.log(`[${new Date().toISOString()}] Servidor rodando em http://${HOST}:${PORT}`);
+});
 
-app.listen(PORT, '0.0.0.0', () => {
-  console.log('Servidor rodando em http://0.0.0.0:3000');
+server.on('error', (error) => {
+  console.error('Erro no servidor:', error);
+  process.exit(1);
 });

@@ -1,5 +1,5 @@
 import puppeteer from 'puppeteer';
-import { Cobranca } from '../models/cobranca.model';
+import { Cobranca } from '../modules/financeiro/cobranca/models/cobranca.model';
 
 export async function gerarPDFBuffer(cobranca: Cobranca): Promise<Buffer> {
     const browser = await puppeteer.launch({
